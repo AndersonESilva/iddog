@@ -4,13 +4,13 @@ import br.com.anderson.iddog.data.request.SignupRequest
 import br.com.anderson.iddog.data.response.SignupResponse
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.GET
+import retrofit2.http.POST
 
 /**
  * Created by anderson on 24/06/2020.
  */
 interface IdwallService {
 
-    @GET("/signup")
+    @POST("/signup")
     fun signup(@Body signupRequest: SignupRequest): Call<SignupResponse>
 }

@@ -25,7 +25,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providePicPayService(): IdwallService {
+    fun provideIdwallService(): IdwallService {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.URL_BASE)
             .addConverterFactory(GsonConverterFactory.create())

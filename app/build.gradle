@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "URL_BASE", "\"https://iddog-nrizncxqba-uc.a.run.app/\""
+        buildConfigField "String", "URL_BASE", "\"https://iddog-nrizncxqba-uc.a.run.app\""
     }
     dataBinding {
         enabled = true

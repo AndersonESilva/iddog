@@ -13,6 +13,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
     override fun init() {
         bind.viewModel = viewModel
+
+        bind.btnLogin.setOnClickListener{
+            viewModel.signup(bind.editEmail.text.toString())
+        }
+
     }
 
 }
