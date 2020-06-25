@@ -1,10 +1,12 @@
 package br.com.anderson.iddog.feature.login.activity
 
+import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Observer
 import br.com.anderson.iddog.R
 import br.com.anderson.iddog.databinding.ActivityLoginBinding
 import br.com.anderson.iddog.feature.base.BaseActivity
+import br.com.anderson.iddog.feature.feed.activity.FeedActivity
 import br.com.anderson.iddog.feature.login.viewmodel.LoginViewModel
 import br.com.anderson.iddog.util.validateEmailFormat
 
@@ -21,14 +23,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
         bind.viewModel = viewModel
 
         bind.btnLogin.setOnClickListener{
+            bind.progressBar.visibility = View.VISIBLE
             if(bind.editEmail.text.toString().validateEmailFormat()){
                 viewModel.signup(bind.editEmail.text.toString()).observe(this, Observer {
                     if(it.data != null){
-
+                        val intent = Intent(this, FeedActivity::class.java)
+                        intent.putExtra("", it.data.user)
+                        startActivity(intent)
                     }else{
                         bind.textError.visibility = View.VISIBLE
                         bind.textError.text = getString(R.string.login_email_error)
                     }
+                    bind.progressBar.visibility = View.INVISIBLE
                 })
             }else{
                 bind.textError.visibility = View.VISIBLE

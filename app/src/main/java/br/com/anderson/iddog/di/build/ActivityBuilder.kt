@@ -1,6 +1,7 @@
 package br.com.anderson.iddog.di.build
 
 import br.com.anderson.iddog.di.Activity
+import br.com.anderson.iddog.feature.feed.activity.FeedActivity
 import br.com.anderson.iddog.feature.login.activity.LoginActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -15,4 +16,9 @@ abstract class ActivityBuilder {
     @Activity
     @ContributesAndroidInjector
     abstract fun bindMainActivity(): LoginActivity
+
+    // Feed
+    @Activity
+    @ContributesAndroidInjector
+    abstract fun bindFeedActivity(): FeedActivity
 }
