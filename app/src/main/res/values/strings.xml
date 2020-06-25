@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Iddog</string>
-    <string name="btn_login">Logar</string>
+
+    //Login
+    <string name="login_btn">Signup</string>
+    <string name="login_email_invalido">Email Inválido</string>
+    <string name="login_email_error">Existe algum problema</string>
 </resources>

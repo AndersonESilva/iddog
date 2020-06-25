@@ -3,6 +3,7 @@ package br.com.anderson.iddog.service.repository
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import br.com.anderson.iddog.data.request.SignupRequest
+import br.com.anderson.iddog.data.response.Resouce
 import br.com.anderson.iddog.data.response.SignupResponse
 import br.com.anderson.iddog.service.IdwallService
 import retrofit2.Call
@@ -15,17 +16,17 @@ import javax.inject.Inject
  */
 class LoginRepository @Inject constructor(private val service: IdwallService){
 
-    fun signup(email: String): MutableLiveData<SignupResponse>{
-        var data = MutableLiveData<SignupResponse>()
+    fun signup(email: String): MutableLiveData<Resouce<SignupResponse>> {
+        var data = MutableLiveData<Resouce<SignupResponse>>()
 
         service.signup(SignupRequest(email)).enqueue(object : Callback<SignupResponse> {
             override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-                data.value = null
+                data.value = Resouce(null, t.message)
                 Log.e("SIGNUP ERROR", t.message)
             }
 
             override fun onResponse(call: Call<SignupResponse>, response: Response<SignupResponse>) {
-                data.value = response.body()
+                data.value = Resouce(response.body(), null)
             }
 
         })
