@@ -1,13 +1,18 @@
 package br.com.anderson.iddog.feature.login.activity
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import br.com.anderson.iddog.R
+import br.com.anderson.iddog.databinding.ActivityLoginBinding
+import br.com.anderson.iddog.feature.base.BaseActivity
+import br.com.anderson.iddog.feature.login.viewmodel.LoginViewModel
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+    override fun getLayoutId(): Int = R.layout.activity_login
+
+    override fun getViewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
+
+    override fun init() {
+        bind.viewModel = viewModel
     }
+
 }

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">iddog</string>
+    <string name="app_name">Iddog</string>
+    <string name="btn_login">Logar</string>
 </resources>
