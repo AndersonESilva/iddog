@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".feature.feed.activity.FeedActivity">
 
@@ -14,5 +15,15 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark">
 
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="@dimen/spinner_width_small"
+            android:layout_height="@dimen/spinner_height"
+            android:textAlignment="center"
+            android:layout_marginLeft="@dimen/layout_margin_medium"
+            android:layout_marginTop="@dimen/layout_margin_medium"
+            android:background="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
