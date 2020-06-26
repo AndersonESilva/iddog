@@ -8,6 +8,7 @@ import br.com.anderson.iddog.databinding.ActivityLoginBinding
 import br.com.anderson.iddog.feature.base.BaseActivity
 import br.com.anderson.iddog.feature.feed.activity.FeedActivity
 import br.com.anderson.iddog.feature.login.viewmodel.LoginViewModel
+import br.com.anderson.iddog.util.Constants
 import br.com.anderson.iddog.util.validateEmailFormat
 
 /**
@@ -26,9 +27,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
             bind.progressBar.visibility = View.VISIBLE
             if(bind.editEmail.text.toString().validateEmailFormat()){
                 viewModel.signup(bind.editEmail.text.toString()).observe(this, Observer {
-                    if(it.data != null){
+                    if(it.data?.user != null){
                         val intent = Intent(this, FeedActivity::class.java)
-                        intent.putExtra("", it.data.user)
+                        intent.putExtra(Constants.INTENT_USER, it.data.user)
                         startActivity(intent)
                     }else{
                         bind.textError.visibility = View.VISIBLE

@@ -8,4 +8,5 @@
     <dimen name="layout_margin_very_large">128dp</dimen>
     <dimen name="layout_margin_large">76dp</dimen>
     <dimen name="layout_margin_medium">32dp</dimen>
+    <dimen name="layout_height_big">256dp</dimen>
 </resources>
