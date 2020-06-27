@@ -44,7 +44,7 @@
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/user_list_progress_bar"
+            android:id="@+id/progressBarFeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"

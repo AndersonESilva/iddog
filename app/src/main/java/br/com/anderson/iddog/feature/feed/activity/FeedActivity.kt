@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.anderson.iddog.R
 import br.com.anderson.iddog.data.enum.CategoryEnum
@@ -15,7 +14,6 @@ import br.com.anderson.iddog.feature.base.BaseActivity
 import br.com.anderson.iddog.feature.feed.adapter.DogListAdapter
 import br.com.anderson.iddog.feature.feed.viewmodel.FeedViewModel
 import br.com.anderson.iddog.util.Constants
-import java.util.*
 
 /**
  * Created by anderson on 25/06/2020.
@@ -59,15 +57,15 @@ class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(){
     }
 
     private fun getCategory(category: String){
+        bind.progressBarFeed.visibility = View.VISIBLE
         user.token?.let {
             viewModel.feed(it, category).observe(this, Observer {request ->
                 if(request.data != null){
                     initListView(request.data)
                 }else{
-                    // bind.textError.visibility = View.VISIBLE
-                    // bind.textError.text = getString(R.string.login_email_error)
+                    showError()
                 }
-                // bind.progressBar.visibility = View.INVISIBLE
+                bind.progressBarFeed.visibility = View.INVISIBLE
             })
         }
     }

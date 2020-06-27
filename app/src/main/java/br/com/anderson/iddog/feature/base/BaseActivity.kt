@@ -1,11 +1,14 @@
 package br.com.anderson.iddog.feature.base
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import br.com.anderson.iddog.R
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -35,5 +38,15 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
         viewModel = ViewModelProvider(this,this.viewModelProvider).get(getViewModelClass())
 
         init()
+    }
+
+    fun showError(){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(R.string.generic_error)
+            .setPositiveButton(R.string.OK,
+                DialogInterface.OnClickListener { dialog, id ->
+                    // OK
+                })
+        builder.create().show()
     }
 }

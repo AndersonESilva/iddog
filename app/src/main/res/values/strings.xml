@@ -5,5 +5,7 @@
     //Login
     <string name="login_btn">Signup</string>
     <string name="login_email_invalido">Email Inválido</string>
-    <string name="login_email_error">Existe algum problema</string>
+
+    <string name="generic_error">Existe algum problema mas já estamos trabalhando nisso, tente mais tarde. Obrigado.</string>
+    <string name="OK">"OK"</string>
 </resources>

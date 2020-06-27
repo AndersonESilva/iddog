@@ -18,5 +18,4 @@ class LoginViewModel @Inject constructor(private var repository: LoginRepository
             return@map it
         }
     }
-
 }

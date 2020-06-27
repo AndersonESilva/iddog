@@ -33,8 +33,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
                         startActivity(intent)
                         bind.textError.visibility = View.INVISIBLE
                     }else{
-                        bind.textError.visibility = View.VISIBLE
-                        bind.textError.text = getString(R.string.login_email_error)
+                        showError()
                     }
                     bind.progressBar.visibility = View.INVISIBLE
                 })
