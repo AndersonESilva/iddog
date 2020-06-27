@@ -3,6 +3,8 @@ package br.com.anderson.iddog.feature.feed.activity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.anderson.iddog.R
 import br.com.anderson.iddog.data.enum.CategoryEnum
@@ -38,15 +40,12 @@ class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(){
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         bind.spinnerCategory.adapter = adapter
-
         bind.spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                //CategoryEnum.values()[position].category
-                //initListView()
+                getCategory(CategoryEnum.values()[position].category)
             }
 
         }
@@ -57,5 +56,19 @@ class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(){
 
         bind.recyclerView.adapter = adapter
         bind.recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun getCategory(category: String){
+        user.token?.let {
+            viewModel.feed(it, category).observe(this, Observer {request ->
+                if(request.data != null){
+                    initListView(request.data)
+                }else{
+                    // bind.textError.visibility = View.VISIBLE
+                    // bind.textError.text = getString(R.string.login_email_error)
+                }
+                // bind.progressBar.visibility = View.INVISIBLE
+            })
+        }
     }
 }
