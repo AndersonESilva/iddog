@@ -31,6 +31,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
                         val intent = Intent(this, FeedActivity::class.java)
                         intent.putExtra(Constants.INTENT_USER, it.data.user)
                         startActivity(intent)
+                        bind.textError.visibility = View.INVISIBLE
                     }else{
                         bind.textError.visibility = View.VISIBLE
                         bind.textError.text = getString(R.string.login_email_error)
@@ -39,6 +40,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
                 })
             }else{
                 bind.textError.visibility = View.VISIBLE
+                bind.progressBar.visibility = View.INVISIBLE
                 bind.textError.text = getString(R.string.login_email_invalido)
             }
         }
