@@ -4,11 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.anderson.iddog.R
+import br.com.anderson.iddog.feature.base.CellClickListener
 
 /**
  * Created by anderson on 26/06/2020.
  */
-class DogListAdapter constructor(private var users: List<String>) : RecyclerView.Adapter<DogFeedItemViewHolder>() {
+class DogListAdapter constructor(private var dogs: List<String>,
+                                 private val cellClickListener: CellClickListener
+) : RecyclerView.Adapter<DogFeedItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogFeedItemViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -18,8 +21,11 @@ class DogListAdapter constructor(private var users: List<String>) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: DogFeedItemViewHolder, position: Int) {
-        holder.bind(users[position])
+        holder.bind(dogs[position])
+        holder.itemView.setOnClickListener{
+            cellClickListener.onCellClickListener(dogs[position])
+        }
     }
 
-    override fun getItemCount(): Int = users.size
+    override fun getItemCount(): Int = dogs.size
 }

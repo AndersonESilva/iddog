@@ -1,8 +1,16 @@
 package br.com.anderson.iddog.feature.feed.activity
 
+import android.app.Dialog
+import android.content.DialogInterface
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.view.View
+import android.view.ViewGroup
+import android.view.Window.FEATURE_NO_TITLE
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.anderson.iddog.R
@@ -11,14 +19,19 @@ import br.com.anderson.iddog.data.response.DogResponse
 import br.com.anderson.iddog.data.response.UserResponse
 import br.com.anderson.iddog.databinding.ActivityFeedBinding
 import br.com.anderson.iddog.feature.base.BaseActivity
+import br.com.anderson.iddog.feature.base.CellClickListener
 import br.com.anderson.iddog.feature.feed.adapter.DogListAdapter
 import br.com.anderson.iddog.feature.feed.viewmodel.FeedViewModel
 import br.com.anderson.iddog.util.Constants
+import br.com.anderson.iddog.util.Constants.Companion.DIALOG_HEIGNT
+import br.com.anderson.iddog.util.Constants.Companion.DIALOG_WIGTH
+import br.com.anderson.iddog.util.ImageUtil
+
 
 /**
  * Created by anderson on 25/06/2020.
  */
-class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(){
+class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(), CellClickListener {
 
     override fun getLayoutId(): Int = R.layout.activity_feed
 
@@ -50,7 +63,7 @@ class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(){
     }
 
     private fun initListView(dogResponse: DogResponse){
-        var adapter = DogListAdapter(dogResponse.listUrl)
+        var adapter = DogListAdapter(dogResponse.listUrl, this)
 
         bind.recyclerView.adapter = adapter
         bind.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -68,5 +81,27 @@ class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(){
                 bind.progressBarFeed.visibility = View.INVISIBLE
             })
         }
+    }
+
+    override fun <String> onCellClickListener(data: String) {
+        showImage(data.toString())
+    }
+
+    fun showImage(urlImage: String) {
+        val builder = Dialog(this)
+        builder.requestWindowFeature(FEATURE_NO_TITLE)
+        builder.setOnDismissListener(DialogInterface.OnDismissListener {
+            //nothing;
+        })
+
+        val imageView = ImageView(this)
+        ImageUtil.setPicassoImage(imageView, urlImage)
+        builder.addContentView(
+            imageView, RelativeLayout.LayoutParams(
+                DIALOG_WIGTH,
+                DIALOG_HEIGNT
+            )
+        )
+        builder.show()
     }
 }

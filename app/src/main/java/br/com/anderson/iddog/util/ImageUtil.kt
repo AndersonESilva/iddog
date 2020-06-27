@@ -27,4 +27,17 @@ object ImageUtil {
                 }
             })
     }
+
+    fun setPicassoImage(imageView: ImageView, imgUrl: String?) {
+        Picasso.get()
+            .load(imgUrl)
+            .error(R.drawable.ic_error_white_48dp)
+            .into(imageView, object : Callback {
+                override fun onSuccess() {
+                }
+
+                override fun onError(e: Exception?) {
+                }
+            })
+    }
 }

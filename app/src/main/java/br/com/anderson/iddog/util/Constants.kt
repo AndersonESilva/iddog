@@ -8,5 +8,8 @@ class Constants {
     companion object {
 
         const val INTENT_USER : String = "intent_user"
+
+        const val DIALOG_WIGTH : Int = 900
+        const val DIALOG_HEIGNT: Int = 900
     }
 }
