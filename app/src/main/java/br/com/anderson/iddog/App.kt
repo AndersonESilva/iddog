@@ -11,7 +11,7 @@ import javax.inject.Inject
 /**
  * Created by anderson on 24/06/2020.
  */
-class App : Application(), HasActivityInjector {
+open class App : Application(), HasActivityInjector {
 
     companion object {
         @get:Synchronized
