@@ -34,7 +34,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     private fun clickSignup(){
         if(bind.editEmail.text.toString().validateEmailFormat()){
             viewModel.signup(bind.editEmail.text.toString()).observe(this, Observer {
-                if(it.data?.user != null){
+                if(it.data?.user?.token != null){
                     showFeed(it.data.user)
                 }else{
                     showError()

@@ -31,7 +31,7 @@ import br.com.anderson.iddog.util.ImageUtil
 /**
  * Created by anderson on 25/06/2020.
  */
-class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(), CellClickListener {
+class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(), CellClickListener{
 
     override fun getLayoutId(): Int = R.layout.activity_feed
 
@@ -62,13 +62,6 @@ class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(), CellCli
         }
     }
 
-    private fun initListView(dogResponse: DogResponse){
-        var adapter = DogListAdapter(dogResponse.listUrl, this)
-
-        bind.recyclerView.adapter = adapter
-        bind.recyclerView.layoutManager = LinearLayoutManager(this)
-    }
-
     private fun getCategory(category: String){
         bind.progressBarFeed.visibility = View.VISIBLE
         user.token?.let {
@@ -81,6 +74,13 @@ class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(), CellCli
                 bind.progressBarFeed.visibility = View.INVISIBLE
             })
         }
+    }
+
+    private fun initListView(dogResponse: DogResponse){
+        var adapter = DogListAdapter(dogResponse.listUrl, this)
+
+        bind.recyclerView.adapter = adapter
+        bind.recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     override fun <String> onCellClickListener(data: String) {
