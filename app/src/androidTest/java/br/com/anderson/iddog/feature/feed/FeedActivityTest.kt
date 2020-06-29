@@ -28,26 +28,29 @@ class FeedActivityTest : BaseInstrumentTest(){
     @get:Rule
     val rule = ActivityTestRule(FeedActivity::class.java, false, false)
 
-    @Test
-    fun shouldDisplayTitle() {
-        val intent = Intent()
+    private lateinit var intent: Intent
+
+    override fun initTest(){
+        intent = Intent()
         val user = UserResponse("testeaaaa@gmail.com","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJpZGRvZy1zZXJ2aWNlIiwic3ViIjoiNWVmNDEzYmFlYmJlNGVkMjUxOTg5MGJmIiwiaWF0IjoxNTkzMDU0MTM4LCJleHAiOjE1OTQzNTAxMzh9.53hVE0UdtMhhLanhT6yvJfA5CPItnvsUQ3Cyq_R3mP0")
         intent.putExtra(Constants.INTENT_USER, user)
         rule.launchActivity(intent)
+    }
+
+    @Test
+    fun shouldDisplayTitle() {
 
         val expectedTitle = application.getString(R.string.title_activity_feed)
-
         onView(withText(expectedTitle)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun shouldDisplayListItem() {
-        val intent = Intent()
-        val user = UserResponse("testeaaaa@gmail.com","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJpZGRvZy1zZXJ2aWNlIiwic3ViIjoiNWVmNDEzYmFlYmJlNGVkMjUxOTg5MGJmIiwiaWF0IjoxNTkzMDU0MTM4LCJleHAiOjE1OTQzNTAxMzh9.53hVE0UdtMhhLanhT6yvJfA5CPItnvsUQ3Cyq_R3mP0")
-        intent.putExtra(Constants.INTENT_USER, user)
-        rule.launchActivity(intent)
-
+        fun shouldDisplayListItem() {
         RecyclerViewMatchers.checkRecyclerViewItem(R.id.recyclerView,0, isDisplayed())
     }
 
+    @Test
+    fun shouldShowImageWithClick() {
+
+    }
 }

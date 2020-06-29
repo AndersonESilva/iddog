@@ -48,7 +48,11 @@ abstract class BaseInstrumentTest{
             .client(OkHttpClient.Builder().build())
             .build()
             .create(IdwallService::class.java)
+
+        initTest()
     }
+
+    open fun initTest(){}
 
     @After
     fun after(){
