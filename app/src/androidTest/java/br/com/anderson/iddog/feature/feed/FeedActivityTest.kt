@@ -1,9 +1,9 @@
 package br.com.anderson.iddog.feature.feed
 
 import android.content.Intent
-import android.os.Looper
-import androidx.test.annotation.UiThreadTest
+import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -14,11 +14,11 @@ import br.com.anderson.iddog.feature.BaseInstrumentTest
 import br.com.anderson.iddog.feature.feed.activity.FeedActivity
 import br.com.anderson.iddog.util.Constants
 import br.com.anderson.iddog.util.RecyclerViewMatchers
+import org.hamcrest.Matchers.anything
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import java.util.concurrent.CountDownLatch
 
 /**
  * Created by anderson on 28/06/2020.
@@ -47,6 +47,28 @@ class FeedActivityTest : BaseInstrumentTest(){
 
     @Test
     fun shouldDisplayListItem() {
+        RecyclerViewMatchers.checkRecyclerViewItem(R.id.recyclerView,0, isDisplayed())
+    }
+
+
+    @Test
+    fun shouldDisplayListHound() {
+        onView(withId(R.id.spinnerCategory)).perform(click())
+        onData(anything()).atPosition(1).perform(click())
+        RecyclerViewMatchers.checkRecyclerViewItem(R.id.recyclerView,0, isDisplayed())
+    }
+
+    @Test
+    fun shouldDisplayListPug() {
+        onView(withId(R.id.spinnerCategory)).perform(click())
+        onData(anything()).atPosition(2).perform(click())
+        RecyclerViewMatchers.checkRecyclerViewItem(R.id.recyclerView,0, isDisplayed())
+    }
+
+    @Test
+    fun shouldDisplayListLabrador() {
+        onView(withId(R.id.spinnerCategory)).perform(click())
+        onData(anything()).atPosition(3).perform(click())
         RecyclerViewMatchers.checkRecyclerViewItem(R.id.recyclerView,0, isDisplayed())
     }
 

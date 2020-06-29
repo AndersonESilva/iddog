@@ -2,14 +2,13 @@ package br.com.anderson.iddog.feature
 
 import androidx.test.platform.app.InstrumentationRegistry
 import br.com.anderson.iddog.App
-import br.com.anderson.iddog.util.loadResponse
+import br.com.anderson.iddog.MockServer
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import org.junit.After
 import org.junit.Before
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by anderson on 28/06/2020.
@@ -26,14 +25,17 @@ abstract class BaseInstrumentTest{
             @Throws(InterruptedException::class)
             override fun dispatch(request: RecordedRequest): MockResponse {
                 return when (request.path) {
-                    "/signup" -> successResponseSignup
-                    "/feed?category=husky" -> successResponseFeed
-                    else -> errorResponse
+                    "/signup" -> MockServer.successResponseSignup
+                    "/feed?category=husky" -> MockServer.sucessResponseFeedCategoty(request.path!!)
+                    "/feed?category=hound" -> MockServer.sucessResponseFeedCategoty(request.path!!)
+                    "/feed?category=pug" -> MockServer.sucessResponseFeedCategoty(request.path!!)
+                    "/feed?category=labrador" -> MockServer.sucessResponseFeedCategoty(request.path!!)
+                    else -> MockServer.errorResponse
                 }
             }
         }
 
-        mockServer.start(serverPort)
+        mockServer.start(MockServer.serverPort)
         initTest()
     }
 
@@ -42,25 +44,5 @@ abstract class BaseInstrumentTest{
     @After
     fun after(){
         mockServer.shutdown()
-    }
-
-    companion object {
-        private const val serverPort = 8080
-
-        private val successResponseSignup by lazy {
-            val body: String = "login_signup.json".loadResponse()
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(body).setBodyDelay(2, TimeUnit.SECONDS)
-        }
-
-        private val successResponseFeed by lazy {
-            val body: String = "feed_husky.json".loadResponse()
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(body).setBodyDelay(2, TimeUnit.SECONDS)
-        }
-
-        private val errorResponse by lazy { MockResponse().setResponseCode(404) }
     }
 }
