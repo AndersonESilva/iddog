@@ -1,10 +1,11 @@
 package br.com.anderson.iddog.feature.feed
 
 import android.content.Intent
+import android.os.Looper
+import androidx.test.annotation.UiThreadTest
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import br.com.anderson.iddog.R
@@ -17,6 +18,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import java.util.concurrent.CountDownLatch
 
 /**
  * Created by anderson on 28/06/2020.
@@ -39,18 +41,13 @@ class FeedActivityTest : BaseInstrumentTest(){
 
     @Test
     fun shouldDisplayTitle() {
-
         val expectedTitle = application.getString(R.string.title_activity_feed)
         onView(withText(expectedTitle)).check(matches(isDisplayed()))
     }
 
     @Test
-        fun shouldDisplayListItem() {
+    fun shouldDisplayListItem() {
         RecyclerViewMatchers.checkRecyclerViewItem(R.id.recyclerView,0, isDisplayed())
     }
 
-    @Test
-    fun shouldShowImageWithClick() {
-
-    }
 }
