@@ -27,7 +27,6 @@ import br.com.anderson.iddog.util.Constants.Companion.DIALOG_HEIGNT
 import br.com.anderson.iddog.util.Constants.Companion.DIALOG_WIGTH
 import br.com.anderson.iddog.util.ImageUtil
 
-
 /**
  * Created by anderson on 25/06/2020.
  */

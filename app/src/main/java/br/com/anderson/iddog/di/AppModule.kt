@@ -2,7 +2,7 @@ package br.com.anderson.iddog.di
 
 import android.app.Application
 import android.content.Context
-import br.com.anderson.iddog.BuildConfig
+import br.com.anderson.iddog.App
 import br.com.anderson.iddog.service.IdwallService
 import dagger.Module
 import dagger.Provides
@@ -25,9 +25,10 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideIdwallService(): IdwallService {
+    fun provideIdwallService(app: Application): IdwallService {
+        var appM = app as App
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.URL_BASE)
+            .baseUrl(appM.getUrlBase())
             .addConverterFactory(GsonConverterFactory.create())
             .client(OkHttpClient.Builder().build())
             .build()

@@ -3,6 +3,9 @@ package br.com.anderson.iddog.util
 import androidx.test.platform.app.InstrumentationRegistry
 import java.io.IOException
 
+/**
+ * Created by anderson on 28/06/2020.
+ */
 fun String.loadResponse(featurePath: String = ""): String {
     try {
         val pathFormatted = if(featurePath.isNotEmpty()) "$featurePath/" else featurePath
@@ -10,7 +13,7 @@ fun String.loadResponse(featurePath: String = ""): String {
             .context
             .resources
             .assets
-            .open("json/$pathFormatted$this")
+            .open("mockResponses/$pathFormatted$this")
 
         val size = stream.available()
         val buffer = ByteArray(size)

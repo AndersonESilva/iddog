@@ -36,4 +36,6 @@ open class App : Application(), HasActivityInjector {
             .build()
             .inject(this)
     }
+
+    open fun getUrlBase() = BuildConfig.URL_BASE
 }
