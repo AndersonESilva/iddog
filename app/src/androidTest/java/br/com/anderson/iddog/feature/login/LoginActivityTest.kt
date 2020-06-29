@@ -27,7 +27,7 @@ import org.junit.runners.JUnit4
  */
 @LargeTest
 @RunWith(JUnit4::class)
-class TestLoginActivity : BaseInstrumentTest(){
+class LoginActivityTest : BaseInstrumentTest(){
 
     @get:Rule
     val rule = ActivityTestRule(LoginActivity::class.java, false, false)
@@ -43,7 +43,7 @@ class TestLoginActivity : BaseInstrumentTest(){
     }
 
     @Test
-    fun testShowInvalidateEmail() {
+    fun shouldShowInvalidateEmail() {
         val intent = Intent()
         rule.launchActivity(intent)
 
