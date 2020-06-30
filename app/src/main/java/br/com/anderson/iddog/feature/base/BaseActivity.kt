@@ -45,7 +45,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
         builder.setMessage(R.string.generic_error)
             .setPositiveButton(R.string.OK,
                 DialogInterface.OnClickListener { dialog, id ->
-                    // OK
+                    //nothing;
                 })
         builder.create().show()
     }

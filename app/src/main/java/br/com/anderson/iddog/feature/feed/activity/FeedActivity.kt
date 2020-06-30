@@ -86,7 +86,7 @@ class FeedActivity : BaseActivity<ActivityFeedBinding, FeedViewModel>(), CellCli
         showImage(data.toString())
     }
 
-    fun showImage(urlImage: String) {
+    private fun showImage(urlImage: String) {
         val builder = Dialog(this)
         builder.requestWindowFeature(FEATURE_NO_TITLE)
         builder.setOnDismissListener(DialogInterface.OnDismissListener {
