@@ -6,14 +6,13 @@ import java.io.IOException
 /**
  * Created by anderson on 28/06/2020.
  */
-fun String.loadResponse(featurePath: String = ""): String {
+fun String.loadResponse(): String {
     try {
-        val pathFormatted = if(featurePath.isNotEmpty()) "$featurePath/" else featurePath
         val stream = InstrumentationRegistry.getInstrumentation()
             .context
             .resources
             .assets
-            .open("mockResponses/$pathFormatted$this")
+            .open("mockResponses/$this")
 
         val size = stream.available()
         val buffer = ByteArray(size)

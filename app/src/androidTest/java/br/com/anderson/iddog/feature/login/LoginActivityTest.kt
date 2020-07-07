@@ -21,7 +21,6 @@ import org.junit.runners.JUnit4
 /**
  * Created by anderson on 28/06/2020.
  */
-@LargeTest
 @RunWith(JUnit4::class)
 class LoginActivityTest : BaseInstrumentTest(){
 

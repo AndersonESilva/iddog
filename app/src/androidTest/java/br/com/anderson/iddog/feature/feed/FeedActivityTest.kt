@@ -23,7 +23,6 @@ import org.junit.runners.JUnit4
 /**
  * Created by anderson on 28/06/2020.
  */
-@LargeTest
 @RunWith(JUnit4::class)
 class FeedActivityTest : BaseInstrumentTest(){
 
@@ -37,6 +36,7 @@ class FeedActivityTest : BaseInstrumentTest(){
         val user = UserResponse("testeaaaa@gmail.com","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJpZGRvZy1zZXJ2aWNlIiwic3ViIjoiNWVmNDEzYmFlYmJlNGVkMjUxOTg5MGJmIiwiaWF0IjoxNTkzMDU0MTM4LCJleHAiOjE1OTQzNTAxMzh9.53hVE0UdtMhhLanhT6yvJfA5CPItnvsUQ3Cyq_R3mP0")
         intent.putExtra(Constants.INTENT_USER, user)
         rule.launchActivity(intent)
+        Thread.sleep(5000)
     }
 
     @Test
